@@ -1,0 +1,2 @@
+class FinancialLifeHackReviewsController < ApplicationController
+end

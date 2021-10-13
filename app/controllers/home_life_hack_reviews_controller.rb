@@ -1,0 +1,2 @@
+class HomeLifeHackReviewsController < ApplicationController
+end
