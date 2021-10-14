@@ -1,3 +1,3 @@
 class LifeHackSerializer < ActiveModel::Serializer
-  attributes :id, :title, :type, :image, :description
+  attributes :id, :title, :kind, :image, :description
 end

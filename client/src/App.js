@@ -1,12 +1,24 @@
 import './App.css';
-import Navbar from './Navbar'
+//import { Route } from 'react-router-dom';
+import NavBar from './NavBar'
+import Home from './Home'
+import User from'./components/User'
+import LifeHack from './components/LifeHack'
+import Review from './components/Review'
 //import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
+
 function App() {
 
-  const [allUsers, setAllUsers] = useState( [] )
-  console.log("state of Our allUsers", allUsers)
+  // const [allUsers, setAllUsers] = useState( [] )
+  // console.log("state of Our allUsers", allUsers)
 
   const [currentUser, setCurrentUser] = useState([])
   console.log("Who is Our CurrentUser?? : ", currentUser)
@@ -31,13 +43,11 @@ function App() {
 
   const handleUserSignup =(sythEvent)=>{
     sythEvent.preventDefault()
-    //console.log(sythEvent)
     console.log("In handleUserSignup")
-    // console.log("!! Remember the ByeBug!!")
+    
 
     const userObj = {
       username: username,
-      // username: "NewUser",
       password: "123"
 
     }
@@ -63,16 +73,10 @@ function App() {
     }
     const handleUserLogin =(sythEvent)=>{
       sythEvent.preventDefault()
-      //console.log(sythEvent)
       console.log("In handleUserLogin")
-      // console.log("!! Remember the ByeBug!!")
+      
   
-      const userObj = {
-      //   username: username
-        
-      //   // password: "123"
-  
-      }
+     
   
       console.log("USER username to CHECK: ", usernameForLogin)
   
@@ -162,8 +166,6 @@ function App() {
         .then(editedUser => {console.log("WOW >> ", editedUser)
       
           setCurrentUser(editedUser)
-          
-          //Saying Now No One is Logged In
       
         })
     
@@ -246,54 +248,79 @@ function App() {
   return (
     <div className="App">
       {renderSignupAndLogin()}
-      {/* <Navbar />
-         <Router>
-          <Switch>
+      <NavBar />
+      <Router>
+      <Switch>
+  
 
-            <Route path="/games" component = {Games}>
-              <Games users={users} games={games} setGames={setGames} />
-              <NavLink to="/">
-                <h3>Home</h3>
-              </NavLink>
-            <NavLink to="/users">
-                    <h4> Users</h4>
-            </NavLink>
-            <NavLink to="/games">
-                    <h4>LOZ Games</h4>
-            </NavLink>
-            </Route>
+    <Route exact path="/">
+      <Home />
+    </Route>
 
-            <Route exact path='/login' component={Login}/>                        
 
-            <Route path="/users" component = {Users}>
-              <Users users={users} setUsers={setUsers} />
-              <NavLink to="/">
-                <h3>Home</h3>                
-            </NavLink>
-            <NavLink to="/users">
-                    <h4> Users</h4>
-            </NavLink>
-            <NavLink to="/games">
-                    <h4>LOZ Games</h4>
-            </NavLink>            
-            </Route>
-                          
-            <Route exact path="/">
-            <Home />            
-              <NavLink to="/">
-                  <h3>Home</h3>
-              </NavLink>            
-              <NavLink to="/users">
-                      <h4> Users</h4>
-              </NavLink>
-              <NavLink to="/games">
-                      <h4>LOZ Games</h4>
-              </NavLink>              
-            </Route>          
-          </Switch>
-         </Router>       */}
+    <Route exact path="/users">
+      <User />
+    </Route>
+
+    <Route exact path ="/life_hacks">
+      <LifeHack />
+    </Route>
+
+    <Route exact path = "/reviews">
+      <Review />
+    </Route>
+    </Switch>
+    </Router>
+    
     </div>
   );
 }
 
 export default App;
+
+// <Navbar />
+//          <Router>
+//           <Switch>
+
+//             <Route path="/games" component = {Games}>
+//               <Games users={users} games={games} setGames={setGames} />
+//               <NavLink to="/">
+//                 <h3>Home</h3>
+//               </NavLink>
+//             <NavLink to="/users">
+//                     <h4> Users</h4>
+//             </NavLink>
+//             <NavLink to="/games">
+//                     <h4>LOZ Games</h4>
+//             </NavLink>
+//             </Route>
+
+//             <Route exact path='/login' component={Login}/>                        
+
+//             <Route path="/users" component = {Users}>
+//               <Users users={users} setUsers={setUsers} />
+//               <NavLink to="/">
+//                 <h3>Home</h3>                
+//             </NavLink>
+//             <NavLink to="/users">
+//                     <h4> Users</h4>
+//             </NavLink>
+//             <NavLink to="/games">
+//                     <h4>LOZ Games</h4>
+//             </NavLink>            
+//             </Route>
+                          
+//             <Route exact path="/">
+//             <Home />            
+//               <NavLink to="/">
+//                   <h3>Home</h3>
+//               </NavLink>            
+//               <NavLink to="/users">
+//                       <h4> Users</h4>
+//               </NavLink>
+//               <NavLink to="/games">
+//                       <h4>LOZ Games</h4>
+//               </NavLink>              
+//             </Route>          
+//           </Switch>
+//          </Router>       
