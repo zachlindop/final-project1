@@ -1,5 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Navbar'
+//import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -181,17 +182,17 @@ function App() {
           //Ternary-Concern ? True : False
         return anyUserActive ?
         (<><br></br>
-        <button onClick ={handleUserLogout}>LOGOUT</button>
+        <button onClick ={handleUserLogout}>Log Out</button>
         <br></br>
-        <button onClick={handleDeleteUserAccount}>DELETE YOUR ACCOUNT</button>
+        <button onClick={handleDeleteUserAccount}>Delete Account</button>
         <br></br>
 
-        <h3>Edit your Deets (Details)!</h3>
+        <h3>Edit your Info</h3>
 
         <form onSubmit={handleEditUserAccount}>
           <label>Username: </label>
-          <input type="text" value={usernameBeingEdited} onChange={typingUsernameBeingEdited} />
-          <input type="submit" value="Edit Yo' Deets!"/>
+          <input type="text" value={usernameBeingEdited} onChange={typingUsernameBeingEdited} placeholder="edit" />
+          <input type="submit" value="Edit" />
         </form>
         
         
@@ -203,29 +204,30 @@ function App() {
   const renderSignupAndLogin =()=>{
     return(<>
 
-    <h2>Signup!</h2>
-
-    <form onSubmit={handleUserSignup}>
-      <label>Username: </label>
-      <input type="text" value={username} onChange={typingUsername}/>
+    <form onSubmit={handleUserSignup} className="wrap">
+      <h1>Sign up</h1>
+      <label>Username:</label>
+      <input type="text" value={username} onChange={typingUsername} placeholder="enter name"/>
+      <br></br>
       <label>Password:</label>
-      <input type="password" />
-      <input type="submit" value="Signup!"/>
+      <input type="password" placeholder="enter password" />
+      <br></br>
+      <input type="submit" value="Signup"/>
     </form>
+    
+    
+    <br></br>
+    <br></br>
 
-    <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-
-    <h2>Login!</h2>
-
-    <form onSubmit={handleUserLogin}>
-      <label>Username: </label>
-      <input type="text" value={usernameForLogin} onChange={typingUsernameForLogin}/>
+    <form onSubmit={handleUserLogin} className="wrap">
+      <h1>Log in</h1>
+      <label>Username:</label>
+      <input type="text" value={usernameForLogin} onChange={typingUsernameForLogin} placeholder="enter name"/>
+      <br></br>
       <label>Password:</label>
-      <input type="password" />
-      <input type="submit" value="Login!"/>
+      <input type="password" placeholder="enter password" />
+      <br></br>
+      <input type="submit" value="Login"/>
     </form>
 
       {isThereACurrentUser()}
@@ -243,24 +245,55 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Sam ;)</h1>
       {renderSignupAndLogin()}
-      <header className="App-header">
-        
-        <img src={logo} className="App-logo" alt="logo" />
-        
-      </header>
+      {/* <Navbar />
+         <Router>
+          <Switch>
+
+            <Route path="/games" component = {Games}>
+              <Games users={users} games={games} setGames={setGames} />
+              <NavLink to="/">
+                <h3>Home</h3>
+              </NavLink>
+            <NavLink to="/users">
+                    <h4> Users</h4>
+            </NavLink>
+            <NavLink to="/games">
+                    <h4>LOZ Games</h4>
+            </NavLink>
+            </Route>
+
+            <Route exact path='/login' component={Login}/>                        
+
+            <Route path="/users" component = {Users}>
+              <Users users={users} setUsers={setUsers} />
+              <NavLink to="/">
+                <h3>Home</h3>                
+            </NavLink>
+            <NavLink to="/users">
+                    <h4> Users</h4>
+            </NavLink>
+            <NavLink to="/games">
+                    <h4>LOZ Games</h4>
+            </NavLink>            
+            </Route>
+                          
+            <Route exact path="/">
+            <Home />            
+              <NavLink to="/">
+                  <h3>Home</h3>
+              </NavLink>            
+              <NavLink to="/users">
+                      <h4> Users</h4>
+              </NavLink>
+              <NavLink to="/games">
+                      <h4>LOZ Games</h4>
+              </NavLink>              
+            </Route>          
+          </Switch>
+         </Router>       */}
     </div>
   );
 }
 
 export default App;
-// const [asian, setAsian] = useState([]);
-
-//     useEffect(() => {
-//         fetch("http://localhost:3005/Asian")
-//             .then(r => r.json())
-//             .then(data => setAsian(data))
-//         }, []);
-
-//     return (<div class="food"></div>

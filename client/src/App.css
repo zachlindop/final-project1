@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.wrap {
+  flex: wrap;
+  background-color: green;
+  color: yellow;
+  padding: 2px 4px;
+  border-top: 3px solid purple;
+  border-right: 3px solid purple;
+  border-bottom: 3px solid purple;
+  border-left: 3px solid purple;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 230px;
+  height: 150px;
+  margin: auto;
+
+
+}
