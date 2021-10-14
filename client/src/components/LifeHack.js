@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 function  LifeHack() {
     const [lifeHack, setLifeHack] = useState([]);
+    
 
     useEffect(() => {
         fetch("http://localhost:3000/life_hacks")
@@ -13,12 +14,14 @@ function  LifeHack() {
 
         <h1>Life Hacks!</h1>
         {lifeHack.map(item => 
-        <div>
-            {item.title}
+        <div id="lifehackmap">
+            <h1>{item.title}</h1>
+            
+            Catergory: {item.kind}
             <br></br>
-            {item.kind}
             <br></br>
             <img class="pic" src={item.image} alt="Various LifeHack" />
+            <br></br>
             <br></br>
             {item.description}
         </div>)
