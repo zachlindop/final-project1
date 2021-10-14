@@ -10,37 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_032553) do
+ActiveRecord::Schema.define(version: 2021_10_14_023410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "financial_life_hack_reviews", force: :cascade do |t|
-    t.string "review"
-    t.integer "user_id"
-    t.integer "financial_life_hack_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "financial_life_hacks", force: :cascade do |t|
-    t.string "life_hack"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "home_life_hack_reviews", force: :cascade do |t|
-    t.string "review"
-    t.integer "user_id"
-    t.integer "home_life_hack_id"
+  end
+
+  create_table "home_life_hacks", force: :cascade do |t|
+  end
+
+  create_table "life_hacks", force: :cascade do |t|
+    t.string "title"
+    t.string "type"
+    t.string "image"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "home_life_hacks", force: :cascade do |t|
-    t.string "life_hack"
-    t.string "description"
+  create_table "reviews", force: :cascade do |t|
+    t.string "review"
+    t.integer "user_id"
+    t.integer "life_hack_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -53,18 +52,9 @@ ActiveRecord::Schema.define(version: 2021_10_13_032553) do
   end
 
   create_table "work_study_life_hack_reviews", force: :cascade do |t|
-    t.string "review"
-    t.integer "user_id"
-    t.integer "work_study_life_hack_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "work_study_life_hacks", force: :cascade do |t|
-    t.string "life_hack"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

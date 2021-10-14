@@ -1,88 +1,45 @@
-WorkStudyLifeHackReview.destroy_all
-HomeLifeHackReview.destroy_all
-FinancialLifeHackReview.destroy_all
-WorkStudyLifeHack.destroy_all
-HomeLifeHack.destroy_all
-FinancialLifeHack.destroy_all
+Review.destroy_all
 User.destroy_all
+LifeHack.destroy_all
+
+puts"-------------Models Destroyed---------------------------------"
 
 link = User.create(username: "Link", password_digest: "test123")
 zelda = User.create(username: "Zelda", password_digest:"test123")
 hylia = User.create(username: "Hylia", password_digest: "test123")
 
-wslh1 = WorkStudyLifeHack.create(life_hack: "Two Minute Rule", description:"If an action will take less than two minutes, it should be done at the moment it’s defined, or else put on a to-do list.")
-wslh2 = WorkStudyLifeHack.create(life_hack: "Begin Your Day with the Hardest Task", description: "Everything else that happens will feel easier by comparison. Often a little momentum is all you need.")
-wslh3 = WorkStudyLifeHack.create(life_hack: "Set alarms for everything", description: "With an increase in responsibilities, you can't expect yourself to remember everything. In fact, it's a waste of brainpower. Just set reminders and show up when you need to. It's that easy.")
+puts"---------------------Users Seeded-----------------------------"
 
-WorkStudyLifeHackReview.create(review:"Keeps me productive, and helps to avoid procrastination!", user_id: link.id, work_study_life_hack_id: wslh1.id)
-WorkStudyLifeHackReview.create(review: "Effective, but super stressful if you're not a morning person", user_id: zelda.id, work_study_life_hack_id: wslh2.id)
-WorkStudyLifeHackReview.create(review: "Very clever, but I'm sick of hearing my phone go off all day!", user_id: hylia.id, work_study_life_hack_id: wslh3.id)
+lh1 = LifeHack.create(title: "Two Minute Rule", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbhUJrcXMHjWstD0QSPTx9QEM96Zt-NOf5Gw&usqp=CAU", description: "If an action will take less than two minutes, it should be done at the moment it’s defined, or else put on a to-do list.")
+lh2 = LifeHack.create(title: "Hardest Task First", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-CUqiJBzsrdoaaDhXVDrTo-de7-zF60CPw&usqp=CAU", description: "Everything else that happens will feel easier by comparison. Often a little momentum is all you need.")
+lh3 = LifeHack.create(title: "Alarms for Everything", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiG9KjMFEP5QeQ5YaN5ZiasgIuazb9jC6oSA&usqp=CAU", description: "With an increase in responsibilities, you can't expect yourself to remember everything. In fact, it's a waste of brainpower. Just set reminders and show up when you need to. It's that easy.")
+lh4 = LifeHack.create(title: "More Ink Out of Printer", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqdLD9qFIh2YcI_YKroZNr2LQcnoHUtUWqOg&usqp=CAU", description: "If your printer is out of black ink or toner, change the text color to dark blue.")
+lh5 = LifeHack.create(title: "Grow Food, Not Lawns", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFUdYiiEZ7-qzrxZJWyHuZ37VVmuDxXZe6rQ&usqp=CAU", description: "The movement to replace costly, high-maintenance lawns with veggie-producing garden space is growing in popularity.")
+lh6 = LifeHack.create(title: "Sync Your Sleep With Daylight", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYW4gfSfdM4YzjZ-GEmO9stNizojxAevy_Ww&usqp=CAU", description: "Adjusting your sleep schedule to better coincide with daylight hours will allow you to save on daily electrical usage. Plus, you’ll wake up feeling refreshed and rejuvenated.")
+lh7 = LifeHack.create(title: "Microwave Garlic", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPcqXOODTDZtP931S12rZAyMF75Q83y7hJmQ&usqp=CAU", description: "After 20 seconds, cloves will peel out easily!")
+lh8 = LifeHack.create(title: "Clean shower head with Vinegar", type: "", image: "data:image/jpeg;base64,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", description: "Fill a plastic bag with white vinegar and secure it to the shower head with a rubber band. Allow it to soak in the vinegar overnight, and remove the bag. It will be as good as new!" )
+lh9 = LifeHack.create(title: "Amplify phone's speakers", type: "", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp1oj_js4WqUyZfTouLrsPQuDcCfFOlKv5mI_mSPPriK0yIsVQdfktp8CuoFuUAocS6Cw&usqp=CAU", description: "Put your phone into a drinking glass or a bowl to boost the volume of its speakers." )
 
-flh1 = FinancialLifeHack.create(life_hack:"Get More Ink Out of Your Printer", description:"If your printer is out of black ink or toner, change the text color to dark blue.")
-flh2 = FinancialLifeHack.create(life_hack: "Grow Food, Not Lawns", description: "The movement to replace costly, high-maintenance lawns with veggie-producing garden space is growing in popularity.")
-flh3 = FinancialLifeHack.create(life_hack: "Sync Your Sleep Schedule With Daylight", description: "Adjusting your sleep schedule to better coincide with daylight hours will allow you to save on daily electrical usage. Plus, you’ll wake up feeling refreshed and rejuvenated.")
+puts"------------------------LifeHacks Seeded-------------------------"
 
-FinancialLifeHackReview.create(review: "My boss loves this idea, he gave me a promotion!", user_id: link.id, financial_life_hack_id: flh1.id)
-FinancialLifeHackReview.create(review: "Lots of work, but worth the effort!", user_id: zelda.id, financial_life_hack_id: flh2.id)
-FinancialLifeHackReview.create(review: "I never realized how much money I could save!", user_id: hylia.id, financial_life_hack_id: flh3.id)
+Review.create(review: "Keeps me productive, and helps to avoid procrastination!", user_id: link.id, life_hack_id: lh1.id)
+Review.create(review: "Effective, but super stressful if you're not a morning person", user_id: zelda.id, life_hack_id: lh2.id)
+Review.create(review: "Very clever, but I'm sick of hearing my phone go off all day!", user_id: hylia.id, life_hack_id: lh3.id)
+Review.create(review: "My boss loves this idea, he gave me a promotion!", user_id: link.id, life_hack_id: lh4.id)
+Review.create(review: "Lots of work, but worth the effort!", user_id: zelda.id, life_hack_id: lh5.id)
+Review.create(review: "I never realized how much money I could save!", user_id: hylia.id, life_hack_id: lh6.id)
+Review.create(review: "Makes cooking so much easier.", user_id: link.id, life_hack_id: lh7.id)
+Review.create(review: "Can't believe it looks like it's brand new again!", user_id: zelda.id, life_hack_id: lh8.id)
+Review.create(review: "Amazingly Brilliant!", user_id: hylia.id, life_hack_id: lh9.id)
 
-hlh1 = HomeLifeHack.create(life_hack: "Microwave Garlic", description: "After 20 seconds, cloves will peel out easily!")
-hlh2 = HomeLifeHack.create(life_hack: "Clean shower head with Vinegar", description: "Fill a plastic bag with white vinegar and secure it to the shower head with a rubber band. Allow it to soak in the vinegar overnight, and remove the bag. It will be as good as new!")
-hlh3 = HomeLifeHack.create(life_hack: "Amplify your phone's speakers", description: "Put your phone into a drinking glass or a bowl to boost the volume of its speakers.")
+puts"-----------------------Reviews Seeded-----------------------------------"
 
-HomeLifeHackReview.create(review: "Makes cooking so much easier.", user_id: link.id, home_life_hack_id: hlh1.id)
-HomeLifeHackReview.create(review: "Can't believe it looks like it's brand new again!", user_id: zelda.id, home_life_hack_id: hlh2.id)
-HomeLifeHackReview.create(review: "Amazingly Brilliant!", user_id: hylia.id, home_life_hack_id: hlh3.id)
-
-puts "Users Seeded!"
-
-# create_table "financial_life_hack_reviews", force: :cascade do |t|
-#     t.string "review"
-#     t.integer "user_id"
-#     t.integer "financial_life_hack_id"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "financial_life_hacks", force: :cascade do |t|
-#     t.string "life_hack"
-#     t.string "description"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "home_life_hack_reviews", force: :cascade do |t|
-#     t.string "review"
-#     t.integer "user_id"
-#     t.integer "home_life_hack_id"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "home_life_hacks", force: :cascade do |t|
-#     t.string "life_hack"
-#     t.string "description"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "users", force: :cascade do |t|
-#     t.string "username"
-#     t.string "password_digest"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "work_study_life_hack_reviews", force: :cascade do |t|
-#     t.string "review"
-#     t.integer "user_id"
-#     t.integer "work_study_life_hack_id"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
-#   end
-
-#   create_table "work_study_life_hacks", force: :cascade do |t|
-#     t.string "life_hack"
-#     t.string "description"
-#     t.datetime "created_at", precision: 6, null: false
-#     t.datetime "updated_at", precision: 6, null: false
+Work/Study
+Work/Study
+Work/Study
+Financial
+Financial
+Financial
+Home
+Home
+Home
