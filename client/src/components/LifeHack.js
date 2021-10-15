@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 //import { Button, NavItem } from 'react-bootstrap';
+import Reviews from './Reviews';
 
 function  LifeHack() {
-    const [lifeHack, setLifeHack] = useState([]);
+    const [lifeHacks, setLifeHacks] = useState([]);
     const [title, setTitle] = useState('');    
     const [kind, setKind] = useState('');
     const [image, setImage] = useState('');
@@ -11,7 +12,7 @@ function  LifeHack() {
     useEffect(() => {
         fetch("http://localhost:3000/life_hacks")
             .then(r => r.json())
-            .then(data => setLifeHack(data))
+            .then(data => setLifeHacks(data))
         }, []);
 
     
@@ -21,14 +22,14 @@ function  LifeHack() {
              e.preventDefault();
     
              const data = {
-                "lifeHack": {
+                "life_hack": {
                      "title": title,
                      "kind": kind,
                      "image": image,
                      "description": description
                  }
              }
-        
+            console.log(`data: ${JSON.stringify(data)}`);
              fetch("http://localhost:3000/life_hacks/", {
                method: "POST",
                headers: {
@@ -37,10 +38,10 @@ function  LifeHack() {
                body: JSON.stringify(data)
              })
                .then(response => response.json())
-               .then(lifeHacks => {
-                   console.log(`lifeHack created: ${JSON.stringify(lifeHacks)}`);
-                   setLifeHack([...lifeHack, lifeHacks]);
-               }) 
+               .then(lifeHack => {
+                   console.log(`lifeHack created: ${JSON.stringify(lifeHack)}`);
+                   setLifeHacks([...lifeHacks, lifeHack]);
+               })
         }
 
         return (
@@ -62,19 +63,20 @@ function  LifeHack() {
                       Image:
                       <input type= 'text' placeholder='insert image' onChange={(e) => setImage(e.target.value)}  />
                   </label>
+                  <br/>
                   <label htmlFor='text'>
                       Description:
-                      <input type= 'text' placeholder='insert description' onChange={(e) => setImage(e.target.value)}  />
+                      <input type= 'text' placeholder='insert description' onChange={(e) => setDescription(e.target.value)}  />
                   </label>        
                    <div className="button-row">
                    <input onClick={handleCreateLifeHack} type="submit" value="Share Your Life Hack!"/>                          
                       {/* <Button onClick={handleCreateLifeHack} variant="warning">Create LifeHack </Button>{' '} */}
-                  </div>            
+                  </div>
                 </form>
                  <div id="lifehack">
 
         <h1>Life Hacks!</h1>
-        {lifeHack.map(item => 
+        {lifeHacks.map(item => 
         <div id="lifehackmap">
             <h1>{item.title}</h1>
             
@@ -85,7 +87,9 @@ function  LifeHack() {
             <br></br>
             <br></br>
             {item.description}
-        </div>)
+            <Reviews lifehackId={item.id} reviews={item.reviews} />
+        </div>
+        )
         }
 
     </div>)
