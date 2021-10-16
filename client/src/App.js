@@ -20,36 +20,35 @@ function App() {
   // const [allUsers, setAllUsers] = useState( [] )
   // console.log("state of Our allUsers", allUsers)
 
-  const [currentUser, setCurrentUser] = useState([])
-  console.log("Who is Our CurrentUser?? : ", currentUser)
+  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState('');
+  console.log("Who is Our CurrentUser?? : ", currentUser);
 
   const [anyUserActive, setActiveUserState] = useState( false )
   console.log("Is Anyone Logged In?? : ", anyUserActive)
 
   useEffect(()=>{
-
     fetch("http://localhost:3000/users")
     .then(r => r.json())
     .then(console.log)
+
+    loginStatus();
 
   }, [] )
 
   const [username, setUsername] = useState( "" )
   console.log("In Form - username: ", username)
-    const typingUsername =(sythEvent)=>{
+  const typingUsername =(sythEvent)=>{
       setUsername(sythEvent.target.value)
-
-    }
+  }
 
   const handleUserSignup =(sythEvent)=>{
     sythEvent.preventDefault()
     console.log("In handleUserSignup")
-    
-
+  
     const userObj = {
       username: username,
       password: "123"
-
     }
 
     console.log("USER WE WILL CREATE: ", userObj)
@@ -64,20 +63,41 @@ function App() {
     .then(console.log)
   }
  
-
   const [usernameForLogin, setUsernameForLogin] = useState("")
   console.log("In Form - usernameForLogin: ", usernameForLogin)
-    const typingUsernameForLogin =(sythEvent)=>{
-
+  const typingUsernameForLogin =(sythEvent)=>{
       setUsernameForLogin(sythEvent.target.value)
+  }
+
+  const loginStatus = () => {   
+    const loggedInUserId = localStorage.getItem("currentUserId");
+
+    console.log(`loggedInUserId: ${loggedInUserId}`);
+
+    if (loggedInUserId) {
+      console.log('Not making API call. User found in local storage');      
+      setCurrentUserId(loggedInUserId);
+      setActiveUserState(true);      
     }
-    const handleUserLogin =(sythEvent)=>{
+    // else {
+    //   console.log('making API call: http://localhost:3000/logged_in');
+    //   fetch ('http://localhost:3000/logged_in')
+    //   .then(r=> r.json())
+    //   .then(response => {
+    //     console.log(`loginStatus response: ${JSON.stringify(response)}`)
+    //     if (response.logged_in) {
+    //       handleLogin(response)
+    //     } else {
+    //       handleLogout()
+    //     }
+    //   })
+    // }
+  };
+
+  const handleUserLogin =(sythEvent)=>{
       sythEvent.preventDefault()
       console.log("In handleUserLogin")
-      
-  
-     
-  
+    
       console.log("USER username to CHECK: ", usernameForLogin)
   
       fetch("http://localhost:3000/login", {
@@ -88,16 +108,11 @@ function App() {
       })
       .then(r => r.json())
       .then(loggedInUser =>{ console.log("yay! We loggined In >> ", loggedInUser)
-
         setCurrentUser(loggedInUser)
-
         setActiveUserState(true)
-
+        setCurrentUserId(loggedInUser.id);
+        localStorage.setItem("currentUserId", loggedInUser.id);
       })
-
-      
-
-
     }
 
     const handleUserLogout =(sythEvent)=>{
@@ -113,9 +128,10 @@ function App() {
     .then(loggedOutUser => {console.log("Until Next time!! >> ", loggedOutUser)
   
       setCurrentUser( {} )
-      setActiveUserState(false)
+      setActiveUserState(false);
+      setCurrentUserId('');
+      localStorage.clear();
       //Saying Now No One is Logged In
-  
     })
 
     }
@@ -206,31 +222,35 @@ function App() {
   const renderSignupAndLogin =()=>{
     return(<>
 
-    <form onSubmit={handleUserSignup} className="wrap">
-      <h1>Sign up</h1>
-      <label>Username:</label>
-      <input type="text" value={username} onChange={typingUsername} placeholder="enter name"/>
-      <br></br>
-      <label>Password:</label>
-      <input type="password" placeholder="enter password" />
-      <br></br>
-      <input type="submit" value="Signup"/>
-    </form>
-    
+    {
+    !currentUserId && 
+      <form onSubmit={handleUserSignup} className="wrap">
+        <h1>Sign up</h1>
+        <label>Username:</label>
+        <input type="text" value={username} onChange={typingUsername} placeholder="enter name"/>
+        <br></br>
+        <label>Password:</label>
+        <input type="password" placeholder="enter password" />
+        <br></br>
+        <input type="submit" value="Signup"/>
+      </form>
+    }
     
     <br></br>
     <br></br>
-
-    <form onSubmit={handleUserLogin} className="wrap">
-      <h1>Log in</h1>
-      <label>Username:</label>
-      <input type="text" value={usernameForLogin} onChange={typingUsernameForLogin} placeholder="enter name"/>
-      <br></br>
-      <label>Password:</label>
-      <input type="password" placeholder="enter password" />
-      <br></br>
-      <input type="submit" value="Login"/>
-    </form>
+    { 
+      !currentUserId && 
+      <form onSubmit={handleUserLogin} className="wrap">
+        <h1>Log in</h1>
+        <label>Username:</label>
+        <input type="text" value={usernameForLogin} onChange={typingUsernameForLogin} placeholder="enter name"/>
+        <br></br>
+        <label>Password:</label>
+        <input type="password" placeholder="enter password" />
+        <br></br>
+        <input type="submit" value="Login"/>
+      </form>
+    }
 
       {isThereACurrentUser()}
       {/* Will see or Not See a Logout Button */}
@@ -250,27 +270,24 @@ function App() {
       {renderSignupAndLogin()}
       <NavBar />
       <Router>
-      <Switch>
-  
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-    <Route exact path="/">
-      <Home />
-    </Route>
+          <Route exact path="/users">
+            <User />
+          </Route>
 
+          <Route exact path ="/life_hacks">
+            <LifeHacks currentUserId={currentUserId} />
+          </Route>
 
-    <Route exact path="/users">
-      <User />
-    </Route>
-
-    <Route exact path ="/life_hacks">
-      <LifeHacks />
-    </Route>
-
-    <Route exact path = "/reviews">
-      <Review />
-    </Route>
-    </Switch>
-    </Router>
+          <Route exact path = "/reviews">
+            <Review />
+          </Route>
+        </Switch>
+      </Router>
     
     </div>
   );

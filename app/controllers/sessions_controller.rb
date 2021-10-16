@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
 def create
 
-    user_to_login = User.find_by_username( params[:username])
+    user_to_login = User.find_by(username: params[:username])
 
     if user_to_login
 
@@ -11,9 +11,8 @@ def create
         render json: user_to_login
         
     else
-        render json: {error: "Could Not Authenticate! Sorry! Try Again!"}
+        render json: { error: "Could Not Authenticate! Sorry! Try Again!" }
     end
-
 end
 
 def destroy

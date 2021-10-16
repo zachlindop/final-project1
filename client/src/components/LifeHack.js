@@ -2,12 +2,8 @@ import { useEffect, useState } from 'react';
 //import { Button, NavItem } from 'react-bootstrap';
 import Reviews from './Reviews';
 
-function  LifeHack({lifeHack}) {
+function  LifeHack({lifeHack, currentUserId}) {
     const [lifeHackReviews, setLifeHackReviews] = useState(lifeHack.reviews);
-    // const [title, setTitle] = useState('');    
-    // const [kind, setKind] = useState('');
-    // const [image, setImage] = useState('');
-    // const [description, setDescription] = useState('');
 
     return (            
         <div>  
@@ -23,7 +19,7 @@ function  LifeHack({lifeHack}) {
             {lifeHack.description}
             <br/>
             <button>❤️ Likes:</button>
-            <Reviews lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
+            <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
         </div>
     )   
 

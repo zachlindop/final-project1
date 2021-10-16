@@ -3,7 +3,7 @@ import LifeHack from './LifeHack';
 //import { Button, NavItem } from 'react-bootstrap';
 import Reviews from './Reviews';
 
-function  LifeHacks() {
+function  LifeHacks({currentUserId}) {
     const [lifeHacks, setLifeHacks] = useState([]);
     const [title, setTitle] = useState('');    
     const [kind, setKind] = useState('');
@@ -76,7 +76,7 @@ function  LifeHacks() {
                     
         <h1>Life Hacks!</h1>
         {lifeHacks.map(item => 
-            <LifeHack lifeHack={item} />
+            <LifeHack lifeHack={item} currentUserId={currentUserId} />
         )
         }
 
