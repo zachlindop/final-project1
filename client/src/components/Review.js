@@ -8,6 +8,5 @@ function Review({review}){
     )
 }
 
-
 export default Review;
 

@@ -261,8 +261,6 @@ function App() {
     <br></br>
 
       </>)
-
-
   }
 
   return (
@@ -287,8 +285,7 @@ function App() {
             <Review />
           </Route>
         </Switch>
-      </Router>
-    
+      </Router>    
     </div>
   );
 }

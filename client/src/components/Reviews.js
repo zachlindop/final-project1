@@ -32,7 +32,8 @@ function Reviews({reviews, setLifeHackReviews, lifehackId, currentUserId}){
         })
     }
 
-    return (<div id="review">
+    return (
+        <div id="review">
         <h1>Reviews</h1>
         {reviews.map(review => 
         <div>
@@ -53,9 +54,9 @@ function Reviews({reviews, setLifeHackReviews, lifehackId, currentUserId}){
                 </div>             
             </form>
         }
-    </div>)
+    </div>
+    )
 }
-
 
 export default Reviews;
 
