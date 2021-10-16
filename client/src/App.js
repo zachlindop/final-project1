@@ -3,7 +3,7 @@ import './App.css';
 import NavBar from './NavBar'
 import Home from './Home'
 import User from'./components/User'
-import LifeHack from './components/LifeHack'
+import LifeHacks from './components/LifeHacks'
 import Review from './components/Review'
 //import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react'
@@ -263,7 +263,7 @@ function App() {
     </Route>
 
     <Route exact path ="/life_hacks">
-      <LifeHack />
+      <LifeHacks />
     </Route>
 
     <Route exact path = "/reviews">
