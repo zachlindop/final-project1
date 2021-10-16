@@ -5,7 +5,7 @@ import Home from './Home'
 import User from'./components/User'
 import LifeHacks from './components/LifeHacks'
 import Review from './components/Review'
-//import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
 import {
@@ -79,19 +79,6 @@ function App() {
       setCurrentUserId(loggedInUserId);
       setActiveUserState(true);      
     }
-    // else {
-    //   console.log('making API call: http://localhost:3000/logged_in');
-    //   fetch ('http://localhost:3000/logged_in')
-    //   .then(r=> r.json())
-    //   .then(response => {
-    //     console.log(`loginStatus response: ${JSON.stringify(response)}`)
-    //     if (response.logged_in) {
-    //       handleLogin(response)
-    //     } else {
-    //       handleLogout()
-    //     }
-    //   })
-    // }
   };
 
   const handleUserLogin =(sythEvent)=>{
@@ -186,13 +173,7 @@ function App() {
         })
     
          }
-
-
-
         //renderSignupAndLogin
-
-        
-
 
       //Responsible for Rendering a Logout Button
       const isThereACurrentUser =()=>{ console.log ("In isThereACurrentUser")
@@ -265,9 +246,9 @@ function App() {
 
   return (
     <div className="App">
-      {renderSignupAndLogin()}
-      <NavBar />
+      {renderSignupAndLogin()}      
       <Router>
+        <NavBar />
         <Switch>
           <Route exact path="/">
             <Home />
