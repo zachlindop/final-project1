@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 function Review({review}){
     return (
-    <div id="review">
-        {review.review} (By {review.user_name})
+    <div id="lifeHackReviewsPage">
+        {review.review} <h6 class="inlineReviewInfo">(By {review.user_name})</h6> {<img class="inlineReviewInfo" id="smallImage" src= {review.user_image}/>}
     </div>
     )
 }

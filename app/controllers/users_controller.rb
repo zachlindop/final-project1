@@ -4,6 +4,11 @@ class UsersController < ApplicationController
         render json: User.all
     end
 
+    def show
+        current_user = User.find_by(id: params[:id])
+        render json: current_user
+    end
+
     def create
         # newUser = User.create(user_params)
         newUser = User.new(user_new_params)
@@ -38,7 +43,7 @@ class UsersController < ApplicationController
     private
 
     def user_new_params
-        params.permit(:username, :password)
+        params.permit(:username, :password, :image)
     end
 
     def user_edit_params

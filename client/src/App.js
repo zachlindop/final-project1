@@ -38,6 +38,7 @@ function App() {
 
   const [username, setUsername] = useState( "" )
   console.log("In Form - username: ", username)
+  const [image, setImage] = useState( "" )
   const typingUsername =(sythEvent)=>{
       setUsername(sythEvent.target.value)
   }
@@ -48,7 +49,8 @@ function App() {
   
     const userObj = {
       username: username,
-      password: "123"
+      password: "123",
+      image: image
     }
 
     console.log("USER WE WILL CREATE: ", userObj)
@@ -128,7 +130,7 @@ function App() {
      //User-Delete
      const handleDeleteUserAccount =(sythEvent)=>{
       sythEvent.preventDefault()
-      console.log("Remember the ByeBug!!")
+      console.log("Deleting this User!!")
 
       fetch(`http://localhost:3000/users/${currentUser.id}`, {
       
@@ -213,6 +215,11 @@ function App() {
         <label>Password:</label>
         <input type="password" placeholder="enter password" />
         <br></br>
+        <label htmlFor='text'>
+        Image:
+        <input type="text" placeholder="enter image" onChange={(e) => setImage(e.target.value)} />
+        </label>
+        <br></br>
         <input type="submit" value="Signup"/>
       </form>
     }
@@ -271,51 +278,4 @@ function App() {
   );
 }
 
-export default App;
-
-// <Navbar />
-//          <Router>
-//           <Switch>
-
-//             <Route path="/games" component = {Games}>
-//               <Games users={users} games={games} setGames={setGames} />
-//               <NavLink to="/">
-//                 <h3>Home</h3>
-//               </NavLink>
-//             <NavLink to="/users">
-//                     <h4> Users</h4>
-//             </NavLink>
-//             <NavLink to="/games">
-//                     <h4>LOZ Games</h4>
-//             </NavLink>
-//             </Route>
-
-//             <Route exact path='/login' component={Login}/>                        
-
-//             <Route path="/users" component = {Users}>
-//               <Users users={users} setUsers={setUsers} />
-//               <NavLink to="/">
-//                 <h3>Home</h3>                
-//             </NavLink>
-//             <NavLink to="/users">
-//                     <h4> Users</h4>
-//             </NavLink>
-//             <NavLink to="/games">
-//                     <h4>LOZ Games</h4>
-//             </NavLink>            
-//             </Route>
-                          
-//             <Route exact path="/">
-//             <Home />            
-//               <NavLink to="/">
-//                   <h3>Home</h3>
-//               </NavLink>            
-//               <NavLink to="/users">
-//                       <h4> Users</h4>
-//               </NavLink>
-//               <NavLink to="/games">
-//                       <h4>LOZ Games</h4>
-//               </NavLink>              
-//             </Route>          
-//           </Switch>
-//          </Router>       
+export default App;     

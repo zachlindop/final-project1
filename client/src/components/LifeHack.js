@@ -4,6 +4,16 @@ import Reviews from './Reviews';
 
 function  LifeHack({lifeHack, currentUserId}) {
     const [lifeHackReviews, setLifeHackReviews] = useState(lifeHack.reviews);
+    const [countLove, setCountLove] = useState(0)
+    const [countHate, setCountHate] = useState(0)
+
+    function handleCountClickLoves() {
+        setCountLove(countLove + 1)
+      }
+
+    function handleCountClickHates() {
+        setCountHate(countHate + 1)
+      }
 
     return (         
         <div>  
@@ -18,7 +28,8 @@ function  LifeHack({lifeHack, currentUserId}) {
                     <br></br>
                     {lifeHack.description}
                     <br/>
-                    <button>❤️ Likes:</button>
+                    <button onClick={handleCountClickLoves}>❤️ Loves: {countLove}</button>
+                    <button onClick={handleCountClickHates}>💔 Hates: {countHate}</button>
                     <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
                 </div>
             </div>                  

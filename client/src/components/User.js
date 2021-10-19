@@ -14,8 +14,8 @@ function User() {
         <h1>Users</h1>
         {user.map(item => 
         <div>
-            {/* <img class="image" src={item.image} />
-            <br></br> */}
+            <img class="image" src={item.image} />
+            <br></br>
             {item.username}
             
         </div>)
