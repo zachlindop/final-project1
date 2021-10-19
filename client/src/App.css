@@ -87,3 +87,24 @@
   display: inline-block;
   color: black;
 }
+
+#userName{
+  color:blueviolet;
+
+}
+#userGrid{
+  flex: wrap;
+  background-color: white;
+  color: black;
+  padding: 2px 4px;
+  border-top: 3px solid purple;
+  border-right: 3px solid purple;
+  border-bottom: 3px solid purple;
+  border-left: 3px solid purple;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  }
+

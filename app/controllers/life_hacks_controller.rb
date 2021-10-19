@@ -18,6 +18,6 @@ class LifeHacksController < ApplicationController
 
     private
     def life_hack_params
-        params.require(:life_hack).permit(:title, :kind, :image, :description)
+        params.require(:life_hack).permit(:title, :life_hack_type, :image, :description)
     end
 end

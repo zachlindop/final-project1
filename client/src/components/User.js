@@ -13,11 +13,13 @@ function User() {
 
         <h1>Users</h1>
         {user.map(item => 
-        <div>
+        <div id="userGrid">
+            <h1 id="userName">{item.username}</h1>
+            <br/>
             <img class="image" src={item.image} />
-            <br></br>
-            {item.username}
+            <br/>
             
+            {item.about}
         </div>)
         }
 
