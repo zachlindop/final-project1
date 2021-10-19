@@ -268,10 +268,6 @@ function App() {
           <Route exact path ="/life_hacks">
             <LifeHacks currentUserId={currentUserId} />
           </Route>
-
-          <Route exact path = "/reviews">
-            <Review />
-          </Route>
         </Switch>
       </Router>    
     </div>

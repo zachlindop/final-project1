@@ -2,7 +2,7 @@ class CreateLifeHacks < ActiveRecord::Migration[6.1]
   def change
     create_table :life_hacks do |t|
       t.string :title
-      t.string :kind
+      t.string :life_hack_type
       t.string :image
       t.string :description
 

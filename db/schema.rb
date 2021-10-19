@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_023410) do
 
   create_table "life_hacks", force: :cascade do |t|
     t.string "title"
-    t.string "kind"
+    t.string "life_hack_type"
     t.string "image"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_10_14_023410) do
     t.string "username"
     t.string "image"
     t.string "password_digest"
+    t.string "about"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

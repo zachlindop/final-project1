@@ -20,7 +20,7 @@ function  LifeHack({lifeHack, currentUserId}) {
             <div id="lifehack">                    
                 <div id="lifehackmap">
                     <h1>{lifeHack.title}</h1>            
-                    Catergory: {lifeHack.kind}
+                    Catergory: {lifeHack.life_hack_type}
                     <br></br>
                     <br></br>
                     <img class="pic" src={lifeHack.image} alt="Various LifeHack" />

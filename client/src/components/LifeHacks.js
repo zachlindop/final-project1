@@ -6,7 +6,7 @@ import Reviews from './Reviews';
 function  LifeHacks({currentUserId}) {
     const [lifeHacks, setLifeHacks] = useState([]);
     const [title, setTitle] = useState('');    
-    const [kind, setKind] = useState('');
+    const [lifeHackType, setLifeHackType] = useState('');
     const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
 
@@ -23,7 +23,7 @@ function  LifeHacks({currentUserId}) {
              const data = {
                 "life_hack": {
                      "title": title,
-                     "kind": kind,
+                     "life_hack_type": lifeHackType,
                      "image": image,
                      "description": description
                  }
@@ -52,8 +52,8 @@ function  LifeHacks({currentUserId}) {
                     </label>  
                     <br/>
                     <label htmlFor='text'>
-                        Kind:
-                        <input type= 'text' placeholder='insert kind' onChange={(e) => setKind(e.target.value)}  />
+                        Type of LifeHack:
+                        <input type= 'text' placeholder='insert type of hack' onChange={(e) => setLifeHackType(e.target.value)}  />
                     </label>   
                     <br/>  
                     <label htmlFor='text'>

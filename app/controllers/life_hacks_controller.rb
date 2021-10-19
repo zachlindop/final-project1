@@ -10,8 +10,7 @@ class LifeHacksController < ApplicationController
 
         if new_hack.save
             render json: new_hack, status: :ok
-        else
-            
+        else            
             render json:
              { errors: new_hack.errors.full_messages }, status: :unprocessable_entity
         end
