@@ -15,11 +15,8 @@ function User() {
         {user.map(item => 
         <div id="userGrid">
             <h1 id="userName">{item.username}</h1>
-            <br/>
             <img class="image" src={item.image} />
-            <br/>
-            
-            {item.about}
+            <h2 id="bioColor">Hacker Biography</h2>  {item.about}
         </div>)
         }
 

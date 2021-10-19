@@ -39,6 +39,7 @@ function App() {
   const [username, setUsername] = useState( "" )
   console.log("In Form - username: ", username)
   const [image, setImage] = useState( "" )
+  const [aboutUser, setAboutUser] = useState( "" )
   const typingUsername =(sythEvent)=>{
       setUsername(sythEvent.target.value)
   }
@@ -50,7 +51,8 @@ function App() {
     const userObj = {
       username: username,
       password: "123",
-      image: image
+      image: image,
+      about: aboutUser
     }
 
     console.log("USER WE WILL CREATE: ", userObj)
@@ -185,16 +187,16 @@ function App() {
         (<><br></br>
         <button onClick ={handleUserLogout}>Log Out</button>
         <br></br>
-        <button onClick={handleDeleteUserAccount}>Delete Account</button>
-        <br></br>
+        {/* <button onClick={handleDeleteUserAccount}>Delete Account</button>
+        <br></br> */}
 
-        <h3>Edit your Info</h3>
+        {/* <h3>Edit your Info</h3>
 
         <form onSubmit={handleEditUserAccount}>
           <label>Username: </label>
           <input type="text" value={usernameBeingEdited} onChange={typingUsernameBeingEdited} placeholder="edit" />
           <input type="submit" value="Edit" />
-        </form>
+        </form> */}
         
         
         <br></br></>)
@@ -219,6 +221,9 @@ function App() {
         Image:
         <input type="text" placeholder="enter image" onChange={(e) => setImage(e.target.value)} />
         </label>
+        <br></br>
+        <label>About User:</label>
+        <input type="text" placeholder="user description" onChange={(e) => setAboutUser(e.target.value)} />
         <br></br>
         <input type="submit" value="Signup"/>
       </form>

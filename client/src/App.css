@@ -48,8 +48,8 @@
   border-left: 3px solid purple;
   align-content: center;
   flex-wrap: wrap;
-  width: 230px;
-  height: 150px;
+  width: 275px;
+  height: 200px;
   margin: auto;
 
 
@@ -107,4 +107,6 @@
   height: 500px;
   margin: auto;
   }
-
+#bioColor{
+  color:blueviolet;
+}

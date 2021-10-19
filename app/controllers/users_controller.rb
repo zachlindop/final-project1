@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     private
 
     def user_new_params
-        params.permit(:username, :password, :image)
+        params.permit(:username, :password, :image, :about)
     end
 
     def user_edit_params
