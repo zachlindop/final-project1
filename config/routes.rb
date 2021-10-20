@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :home_life_hacks
   resources :work_study_life_hack_reviews
   resources :work_study_life_hacks
-  resources :users, only: [:index, :destroy, :update]
+  resources :users, only: [:index, :show, :destroy, :update]
     post "/signup", to: "users#create"
 
     post "/login", to: "sessions#create"

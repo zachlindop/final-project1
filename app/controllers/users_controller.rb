@@ -6,7 +6,11 @@ class UsersController < ApplicationController
 
     def show
         current_user = User.find_by(id: params[:id])
-        render json: current_user
+        if current_user
+            render json: current_user
+        else
+            render json:{error: "User not found"}, status: :not_found
+        end
     end
 
     def create

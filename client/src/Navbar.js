@@ -15,6 +15,11 @@ function NavBar(){
                         Life Hacks
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink activeClassName="active" to="/users">
+                        Users
+                    </NavLink>
+                </li>
             </ul>
         </div>
     )
