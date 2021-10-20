@@ -2,7 +2,8 @@ import './App.css';
 //import { Route } from 'react-router-dom';
 import NavBar from './NavBar'
 import Home from './Home'
-import User from'./components/User'
+import Users from'./components/Users';
+import User from './components/User';
 import LifeHacks from './components/LifeHacks'
 import Review from './components/Review'
 import { NavLink } from "react-router-dom"
@@ -267,8 +268,10 @@ function App() {
           </Route>
 
           <Route exact path="/users">
-            <User />
+            <Users />
           </Route>
+
+          <Route exact path="/users/:id" component={User} />
 
           <Route exact path ="/life_hacks">
             <LifeHacks currentUserId={currentUserId} />
