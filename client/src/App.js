@@ -25,17 +25,18 @@ function App() {
   const [currentUserId, setCurrentUserId] = useState('');
   console.log("Who is Our CurrentUser?? : ", currentUser);
 
+  const [users, setUsers] = useState([]);
+
   const [anyUserActive, setActiveUserState] = useState( false )
   console.log("Is Anyone Logged In?? : ", anyUserActive)
 
   useEffect(()=>{
     fetch("http://localhost:3000/users")
     .then(r => r.json())
-    .then(console.log)
+    .then(data => setUsers(data))
 
     loginStatus();
-
-  }, [] )
+  }, [])
 
   const [username, setUsername] = useState( "" )
   console.log("In Form - username: ", username)
@@ -65,7 +66,7 @@ function App() {
 
     })
     .then(r => r.json())
-    .then(console.log)
+    .then(user => setUsers([...users, user]))
   }
  
   const [usernameForLogin, setUsernameForLogin] = useState("")
@@ -268,7 +269,7 @@ function App() {
           </Route>
 
           <Route exact path="/users">
-            <Users />
+            <Users users={users} />
           </Route>
 
           <Route exact path="/users/:id" component={User} />
