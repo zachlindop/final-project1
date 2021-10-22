@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_030407) do
+ActiveRecord::Schema.define(version: 2021_10_22_035710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2021_10_22_030407) do
   end
 
   create_table "home_life_hacks", force: :cascade do |t|
+  end
+
+  create_table "life_hack_user_hates", force: :cascade do |t|
+    t.bigint "life_hack_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["life_hack_id"], name: "index_life_hack_user_hates_on_life_hack_id"
+    t.index ["user_id"], name: "index_life_hack_user_hates_on_user_id"
   end
 
   create_table "life_hack_user_loves", force: :cascade do |t|
@@ -69,6 +79,8 @@ ActiveRecord::Schema.define(version: 2021_10_22_030407) do
   create_table "work_study_life_hacks", force: :cascade do |t|
   end
 
+  add_foreign_key "life_hack_user_hates", "life_hacks"
+  add_foreign_key "life_hack_user_hates", "users"
   add_foreign_key "life_hack_user_loves", "life_hacks"
   add_foreign_key "life_hack_user_loves", "users"
 end

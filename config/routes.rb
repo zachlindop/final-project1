@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :life_hack_user_loves
+  resources :life_hack_user_hates, only: %i[create]
+  resources :life_hack_user_loves, only: %i[create]
+
   resources :reviews
   resources :life_hacks
   resources :financial_life_hack_reviews
@@ -10,11 +12,10 @@ Rails.application.routes.draw do
   resources :work_study_life_hack_reviews
   resources :work_study_life_hacks
   resources :users, only: [:index, :show, :destroy, :update]
-    post "/signup", to: "users#create"
-
-    post "/login", to: "sessions#create"
-
-    delete "/logout", to: "sessions#destroy"
+  
+  post "/signup", to: "users#create"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
     
   resources :snacks
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

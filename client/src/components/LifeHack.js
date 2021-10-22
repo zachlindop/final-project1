@@ -5,7 +5,7 @@ import Reviews from './Reviews';
 function  LifeHack({lifeHack, currentUserId}) {
     const [lifeHackReviews, setLifeHackReviews] = useState(lifeHack.reviews);
     const [countLove, setCountLove] = useState(lifeHack.total_loves);
-    const [countHate, setCountHate] = useState(0)
+    const [countHate, setCountHate] = useState(lifeHack.total_hates);
 
     function handleCountClickLoves() {
         console.log(`increasing love for lifeHack..`);        
@@ -29,11 +29,31 @@ function  LifeHack({lifeHack, currentUserId}) {
               console.log(`lifeHackUserLove created: ${JSON.stringify(lifeHackUserLove)}`);
               setCountLove(lifeHackUserLove.total_loves_for_life_hack);
           })      
-      }
+    }
 
     function handleCountClickHates() {
-        setCountHate(countHate + 1)
-      }
+        console.log(`increasing hate for lifeHack..`);        
+
+        const data = {
+           "life_hack_user_hate": {
+                "user_id": currentUserId,
+                "life_hack_id": lifeHack.id                                
+            }
+        }
+       console.log(`data: ${JSON.stringify(data)}`);
+        fetch("http://localhost:3000/life_hack_user_hates/", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(lifeHackUserHate => {
+              console.log(`lifeHackUserHate created: ${JSON.stringify(lifeHackUserHate)}`);
+              setCountHate(lifeHackUserHate.total_hates_for_life_hack);
+          })      
+    }
 
     return (         
         <div>  
@@ -55,7 +75,12 @@ function  LifeHack({lifeHack, currentUserId}) {
                             : 
                             <button>❤️ Loves: {countLove}</button>
                     }
-                    <button onClick={handleCountClickHates}>💔 Hates: {countHate}</button>
+                    {
+                        currentUserId ? 
+                            <button onClick={handleCountClickHates}>💔 Hates: {countHate}</button>
+                            : 
+                            <button>💔 Hates: {countHate}</button>
+                    }                                    
                     <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
                 </div>
             </div>                  

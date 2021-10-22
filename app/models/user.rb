@@ -2,6 +2,9 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :life_hacks, through: :reviews
 
+    has_many :life_hack_user_loves, class_name: LifeHackUserLove.name, dependent: :destroy
+    has_many :life_hack_user_hates, dependent: :destroy
+
     # has_many :work_study_life_hack_reviews
     # has_many :work_study_life_hacks, through: :work_study_life_hack_reviews
     # has_many :home_life_hack_reviews
