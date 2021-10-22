@@ -42,7 +42,7 @@ function Reviews({reviews, setLifeHackReviews, lifehackId, currentUserId}){
         }
         {
             currentUserId &&
-            <form className="note-editor">
+            <form className="note-editors">
                 
                 <label htmlFor='text'>                    
                     <br/>

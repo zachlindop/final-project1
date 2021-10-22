@@ -4,11 +4,31 @@ import Reviews from './Reviews';
 
 function  LifeHack({lifeHack, currentUserId}) {
     const [lifeHackReviews, setLifeHackReviews] = useState(lifeHack.reviews);
-    const [countLove, setCountLove] = useState(0)
+    const [countLove, setCountLove] = useState(lifeHack.total_loves);
     const [countHate, setCountHate] = useState(0)
 
     function handleCountClickLoves() {
-        setCountLove(countLove + 1)
+        console.log(`increasing love for lifeHack..`);        
+
+        const data = {
+           "life_hack_user_love": {
+                "user_id": currentUserId,
+                "life_hack_id": lifeHack.id                                
+            }
+        }
+       console.log(`data: ${JSON.stringify(data)}`);
+        fetch("http://localhost:3000/life_hack_user_loves/", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(lifeHackUserLove => {
+              console.log(`lifeHackUserLove created: ${JSON.stringify(lifeHackUserLove)}`);
+              setCountLove(lifeHackUserLove.total_loves_for_life_hack);
+          })      
       }
 
     function handleCountClickHates() {
@@ -19,7 +39,8 @@ function  LifeHack({lifeHack, currentUserId}) {
         <div>  
             <div id="lifehack">                    
                 <div id="lifehackmap">
-                    <h1>{lifeHack.title}</h1>            
+                    {lifeHack.title}
+                    <br/>            
                     Catergory: {lifeHack.life_hack_type}
                     <br></br>
                     <br></br>
@@ -28,7 +49,12 @@ function  LifeHack({lifeHack, currentUserId}) {
                     <br></br>
                     {lifeHack.description}
                     <br/>
-                    <button onClick={handleCountClickLoves}>❤️ Loves: {countLove}</button>
+                    {
+                        currentUserId ? 
+                            <button onClick={handleCountClickLoves}>❤️ Loves: {countLove}</button> 
+                            : 
+                            <button>❤️ Loves: {countLove}</button>
+                    }
                     <button onClick={handleCountClickHates}>💔 Hates: {countHate}</button>
                     <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
                 </div>
@@ -38,30 +64,3 @@ function  LifeHack({lifeHack, currentUserId}) {
 }
 
 export default LifeHack;
-
-// export default function App() {
-//     const [count, setCount] = useState(0);
-  
-//     useEffect(() => {
-//       setCount(JSON.parse(window.localStorage.getItem('count')));
-//     }, []);
-  
-//     useEffect(() => {
-//       window.localStorage.setItem('count', count);
-//     }, [count]);
-  
-//     const increaseCount = () => {
-//       return setCount(count + 1);
-//     }
-//     const decreaseCount = () => {
-//       return setCount(count - 1)
-//     }
-  
-//     return (
-//       <div className="App">
-//         <h1> Count {count} </h1>
-//         <button onClick={increaseCount}>+</button>
-//         <button onClick={decreaseCount}>-</button>
-//       </div>
-//     );
-//   }

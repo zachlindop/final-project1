@@ -46,6 +46,7 @@ function  LifeHacks({currentUserId}) {
     return (           
         <div>  
             <form className="note-editor">
+                    <h2 className="header">Create A Lifehack</h2>
                     <label htmlFor='text'>
                         Title:
                         <input type= 'text' placeholder='insert title' onChange={(e) => setTitle(e.target.value)}  />
@@ -71,7 +72,7 @@ function  LifeHacks({currentUserId}) {
                     </div>
                     </form>
             <div id="lifehack">                        
-                <h1>Life Hacks!</h1>
+                <h1>Lifehacks for Life!</h1>
                 {lifeHacks.map(item => 
                     <LifeHack lifeHack={item} currentUserId={currentUserId} />)
                 }

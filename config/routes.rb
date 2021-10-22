@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :life_hack_user_loves
   resources :reviews
   resources :life_hacks
   resources :financial_life_hack_reviews

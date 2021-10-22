@@ -211,7 +211,7 @@ function App() {
     {
     !currentUserId && 
       <form onSubmit={handleUserSignup} className="wrap">
-        <h1>Sign up</h1>
+        <h1 className="header">Sign up</h1>
         <label>Username:</label>
         <input type="text" value={username} onChange={typingUsername} placeholder="enter name"/>
         <br></br>
@@ -235,7 +235,7 @@ function App() {
     { 
       !currentUserId && 
       <form onSubmit={handleUserLogin} className="wrap">
-        <h1>Log in</h1>
+        <h1 className="header">Log in</h1>
         <label>Username:</label>
         <input type="text" value={usernameForLogin} onChange={typingUsernameForLogin} placeholder="enter name"/>
         <br></br>
