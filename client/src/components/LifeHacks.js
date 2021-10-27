@@ -67,12 +67,12 @@ function  LifeHacks({currentUserId}) {
                         <input type= 'text' placeholder='insert description' onChange={(e) => setDescription(e.target.value)}  />
                     </label>        
                     <div className="button-row">
-                    <input onClick={handleCreateLifeHack} type="submit" value="Share Your Life Hack!"/>                          
+                    <input onClick={handleCreateLifeHack} type="submit" value="Share Your Life Hack!"/>                      
                         {/* <Button onClick={handleCreateLifeHack} variant="warning">Create LifeHack </Button>{' '} */}
                     </div>
                     </form>
             <div id="lifehack">                        
-                <h1>Lifehacks for Life!</h1>
+                <h1 id="titleFont">Lifehacks for Life!</h1>
                 {lifeHacks.map(item => 
                     <LifeHack lifeHack={item} currentUserId={currentUserId} />)
                 }

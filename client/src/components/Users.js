@@ -7,7 +7,9 @@ function Users({users}) {
             <div id="userGrid">
                 <h1 id="userName">{item.username}</h1>
                 <img class="image" src={item.image} />
-                <h2 id="bioColor">Hacker Biography</h2>  {item.about}
+                <h2 id="bioColor">Hacker Biography</h2>  
+                {item.about}
+                {/* {item.life_hack_user_loves} */}
             </div>)
         }
     </div>)

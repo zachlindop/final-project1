@@ -3,24 +3,20 @@ import { NavLink } from "react-router-dom"
 function NavBar(){
 
     return(
-        <div>
-        <ul>
-                <li>
+        <div >
+            
+                
                     <NavLink exact activeClassName="active" to="/"> 
-                        Home
+                        <h1 className="navBarHorizontal">Home</h1> 
                     </NavLink>
-                </li>
-                <li>
                     <NavLink activeClassName="active" to="/life_hacks">
-                        Life Hacks
+                        <h1 className="navBarHorizontal"> Lifehacks</h1> 
                     </NavLink>
-                </li>
-                <li>
                     <NavLink activeClassName="active" to="/users">
-                        Users
+                        <h1 className="navBarHorizontal">Users</h1>
                     </NavLink>
-                </li>
-            </ul>
+              
+            
         </div>
     )
 }

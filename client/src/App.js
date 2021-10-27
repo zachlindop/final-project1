@@ -231,8 +231,7 @@ function App() {
       </form>
     }
     
-    <br></br>
-    <br></br>
+   
     { 
       !currentUserId && 
       <form onSubmit={handleUserLogin} className="wrap">

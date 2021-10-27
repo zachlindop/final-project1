@@ -59,9 +59,9 @@ function  LifeHack({lifeHack, currentUserId}) {
         <div>  
             <div id="lifehack">                    
                 <div id="lifehackmap">
-                    {lifeHack.title}
+                    <h1 id="hackTitle">{lifeHack.title}</h1>
                     <br/>            
-                    Catergory: {lifeHack.life_hack_type}
+                    <h3 id="kindOfHack">Catergory: {lifeHack.life_hack_type}</h3>
                     <br></br>
                     <br></br>
                     <img class="pic" src={lifeHack.image} alt="Various LifeHack" />
@@ -77,9 +77,9 @@ function  LifeHack({lifeHack, currentUserId}) {
                     }
                     {
                         currentUserId ? 
-                            <button onClick={handleCountClickHates}>💔 Hates: {countHate}</button>
+                            <button onClick={handleCountClickHates}>💔 Hard Pass: {countHate}</button>
                             : 
-                            <button>💔 Hates: {countHate}</button>
+                            <button>💔 Hard Pass: {countHate}</button>
                     }                                    
                     <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
                 </div>
