@@ -250,6 +250,8 @@ function App() {
         <label>Password:</label>
         <input type="password" placeholder="enter password" />
         <br></br>
+        <br></br>
+        <br></br>              
         <input type="submit" value="Login"/>
       </form>
     }
