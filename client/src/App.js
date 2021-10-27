@@ -65,8 +65,15 @@ function App() {
       body: JSON.stringify(userObj)
 
     })
-    .then(r => r.json())
-    .then(user => setUsers([...users, user]))
+    .then(r => r.json())    
+    .then(loggedInUser =>{ console.log("yay! We signed up as >> ", loggedInUser)
+      setUsers([...users, loggedInUser])
+      setCurrentUser(loggedInUser)
+      setActiveUserState(true)
+      setCurrentUserId(loggedInUser.id);
+      localStorage.setItem("currentUserId", loggedInUser.id);
+      setUsername('');
+    })
   }
  
   const [usernameForLogin, setUsernameForLogin] = useState("")
@@ -105,6 +112,7 @@ function App() {
         setActiveUserState(true)
         setCurrentUserId(loggedInUser.id);
         localStorage.setItem("currentUserId", loggedInUser.id);
+        setUsernameForLogin('');
       })
     }
 
@@ -232,7 +240,7 @@ function App() {
     }
     
    
-    { 
+    {
       !currentUserId && 
       <form onSubmit={handleUserLogin} className="wrap">
         <h1 className="header">Log in</h1>

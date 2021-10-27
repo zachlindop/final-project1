@@ -40,6 +40,10 @@ function  LifeHacks({currentUserId}) {
                .then(lifeHack => {
                    console.log(`lifeHack created: ${JSON.stringify(lifeHack)}`);
                    setLifeHacks([...lifeHacks, lifeHack]);
+                   setTitle('');
+                   setLifeHackType('');
+                   setImage('');
+                   setDescription('');
                })
     }
 
@@ -49,26 +53,25 @@ function  LifeHacks({currentUserId}) {
                     <h2 className="header">Create A Lifehack</h2>
                     <label htmlFor='text'>
                         Title:
-                        <input type= 'text' placeholder='insert title' onChange={(e) => setTitle(e.target.value)}  />
+                        <input type= 'text' value={title} placeholder='insert title' onChange={(e) => setTitle(e.target.value)}  />
                     </label>  
                     <br/>
                     <label htmlFor='text'>
                         Type of LifeHack:
-                        <input type= 'text' placeholder='insert type of hack' onChange={(e) => setLifeHackType(e.target.value)}  />
+                        <input type= 'text' value={lifeHackType} placeholder='insert type of hack' onChange={(e) => setLifeHackType(e.target.value)}  />
                     </label>   
                     <br/>  
                     <label htmlFor='text'>
                         Image:
-                        <input type= 'text' placeholder='insert image' onChange={(e) => setImage(e.target.value)}  />
+                        <input type= 'text' value={image} placeholder='insert image' onChange={(e) => setImage(e.target.value)}  />
                     </label>
                     <br/>
                     <label htmlFor='text'>
                         Description:
-                        <input type= 'text' placeholder='insert description' onChange={(e) => setDescription(e.target.value)}  />
+                        <input type= 'text' value={description} placeholder='insert description' onChange={(e) => setDescription(e.target.value)}  />
                     </label>        
                     <div className="button-row">
-                    <input onClick={handleCreateLifeHack} type="submit" value="Share Your Life Hack!"/>                      
-                        {/* <Button onClick={handleCreateLifeHack} variant="warning">Create LifeHack </Button>{' '} */}
+                    <input onClick={handleCreateLifeHack} type="submit" value="Share Your Life Hack!"/>
                     </div>
                     </form>
             <div id="lifehack">                        
