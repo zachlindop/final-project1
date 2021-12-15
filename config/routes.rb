@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :life_hack_user_so_sos, only: %i[create]
   resources :life_hack_user_hates, only: %i[create]
   resources :life_hack_user_loves, only: %i[create]
 

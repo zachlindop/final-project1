@@ -6,6 +6,7 @@ function  LifeHack({lifeHack, currentUserId}) {
     const [lifeHackReviews, setLifeHackReviews] = useState(lifeHack.reviews);
     const [countLove, setCountLove] = useState(lifeHack.total_loves);
     const [countHate, setCountHate] = useState(lifeHack.total_hates);
+    const [countSoSo, setCountSoSo] = useState(lifeHack.total_so_sos);
 
     function handleCountClickLoves() {
         console.log(`increasing love for lifeHack..`);        
@@ -55,6 +56,30 @@ function  LifeHack({lifeHack, currentUserId}) {
           })      
     }
 
+    function handleCountClickSoSos(){
+        console.log(`increasing so-so for lifeHack..`);        
+
+        const data = {
+           "life_hack_user_so_so": {
+                "user_id": currentUserId,
+                "life_hack_id": lifeHack.id                                
+            }
+        }
+       console.log(`data: ${JSON.stringify(data)}`);
+        fetch("http://localhost:3000/life_hack_user_so_sos/", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(response => response.json())
+          .then(lifeHackUserSoSo => {
+              console.log(`lifeHackUserSoSo created: ${JSON.stringify(lifeHackUserSoSo)}`);
+              setCountSoSo(lifeHackUserSoSo.total_so_sos_for_life_hack);
+          })      
+    }
+
     return (         
         <div>  
             <div id="lifehack">                    
@@ -80,7 +105,13 @@ function  LifeHack({lifeHack, currentUserId}) {
                             <button onClick={handleCountClickHates}>💔 Hard Pass: {countHate}</button>
                             : 
                             <button>💔 Hard Pass: {countHate}</button>
-                    }                                    
+                    }
+                    {
+                        currentUserId ? 
+                            <button onClick={handleCountClickSoSos}>🤷‍♂️ So-So: {countSoSo}</button>
+                            : 
+                            <button>🤷‍♂️ So-So: {countHate}</button>
+                    }                                      
                     <Reviews currentUserId={currentUserId} lifehackId={lifeHack.id} reviews={lifeHackReviews} setLifeHackReviews={setLifeHackReviews} />
                 </div>
             </div>                  

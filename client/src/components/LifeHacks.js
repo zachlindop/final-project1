@@ -8,6 +8,7 @@ function  LifeHacks({currentUserId}) {
     const [title, setTitle] = useState('');    
     const [lifeHackType, setLifeHackType] = useState('');
     const [image, setImage] = useState('');
+    // const [pic, setPic] = useState('');
     const [description, setDescription] = useState('');
 
     useEffect(() => {

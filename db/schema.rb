@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_035710) do
+ActiveRecord::Schema.define(version: 2021_12_13_235332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 2021_10_22_035710) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["life_hack_id"], name: "index_life_hack_user_loves_on_life_hack_id"
     t.index ["user_id"], name: "index_life_hack_user_loves_on_user_id"
+  end
+
+  create_table "life_hack_user_so_sos", force: :cascade do |t|
+    t.bigint "life_hack_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["life_hack_id"], name: "index_life_hack_user_so_sos_on_life_hack_id"
+    t.index ["user_id"], name: "index_life_hack_user_so_sos_on_user_id"
   end
 
   create_table "life_hacks", force: :cascade do |t|
@@ -83,4 +93,6 @@ ActiveRecord::Schema.define(version: 2021_10_22_035710) do
   add_foreign_key "life_hack_user_hates", "users"
   add_foreign_key "life_hack_user_loves", "life_hacks"
   add_foreign_key "life_hack_user_loves", "users"
+  add_foreign_key "life_hack_user_so_sos", "life_hacks"
+  add_foreign_key "life_hack_user_so_sos", "users"
 end
